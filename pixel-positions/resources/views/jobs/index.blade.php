@@ -10,47 +10,28 @@
         <section>
             <x-job-heading>Top Jobs</x-job-heading>
             <div class="w-full grid grid-cols-3 gap-3">
-                <x-job-card />
-                <x-job-card />
-                <x-job-card />
+                @foreach ($featuredJobs as $job)
+                <x-job-card :$job />
+                @endforeach
+
             </div>
         </section>
 
         <section>
             <x-job-heading>Tags</x-job-heading>
             <div class="w-full flex flex-wrap mt-6 justify-start items-center gap-3">
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-                <x-tag>Tag</x-tag>
-
+                @foreach ($tags as $tag)
+                <x-tag :$tag />
+                @endforeach
             </div>
         </section>
 
         <section>
             <x-job-heading>Recent Jobs</x-job-heading>
             <div class="mt-6 space-y-6">
-                <x-job-card-wide />
-                <x-job-card-wide />
-                <x-job-card-wide />
-
+                @foreach ($jobs as $job)
+                <x-job-card-wide :$job />
+                @endforeach
             </div>
         </section>
     </div>

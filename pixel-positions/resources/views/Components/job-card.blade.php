@@ -13,7 +13,7 @@
         <div class="flex justify-between items-center mt-auto">
             <div>
                 @foreach ($job->tags as $tag)
-                <x-tag size='sm'>{{$tag->name}}</x-tag>
+                <x-tag size='sm' :tag="$tag->name" />
                 @endforeach
             </div>
             <x-employer-logo :width='42' />

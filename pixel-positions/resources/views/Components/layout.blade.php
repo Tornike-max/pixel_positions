@@ -30,9 +30,24 @@
 
             </div>
 
-            <div>
-                <a href="#">Post a job</a>
+            @auth
+            <div class="flex items-center gap-2">
+                <a href="/jobs/create">Post a job</a>
+                <form method="POST" action="/logout">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Log out</button>
+                </form>
             </div>
+            @endauth
+
+            @guest
+            <div class="flex items-center gap-2">
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            </div>
+            @endguest
+
         </nav>
 
         <main class="mt-10 max-w-[1300px] w-full mx-auto">

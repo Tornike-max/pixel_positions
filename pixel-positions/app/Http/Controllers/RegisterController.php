@@ -37,6 +37,7 @@ class RegisterController extends Controller
             'logo' => ['required', File::types(['png', 'jpg', 'webp'])]
         ]);
 
+
         $logoPath = '';
 
         if ($request->hasFile('logo')) {
@@ -45,12 +46,15 @@ class RegisterController extends Controller
 
         $user = User::create($userAttributes);
 
-        Employer::create([
-            'user_id' => $user->id,
-            'name' => $employerAttributes['employer'],
-            'logo' => $logoPath
-        ]);
-
+        try {
+            Employer::create([
+                'user_id' => $user->id,
+                'name' => $employerAttributes['employer'],
+                'logo' => $logoPath
+            ]);
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
 
         Auth::login($user);
 

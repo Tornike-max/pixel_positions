@@ -41,17 +41,17 @@ class JobController extends Controller
     {
         $attributes = $request->validated();
 
-        $tags = request('tags') ?? null;
-
         $attributes['employer_id'] = Auth::user()->employer->id;
+
+
         if ($attributes['featured']) {
             $attributes['featured'] = $attributes['featured'] === 'yes' ? true : false;
         }
 
-        $job = Auth::user()->employer->jobs()->create($attributes);
+        $job = Auth::user()->employer->jobs()->create(Arr::except($attributes, 'tags'));
 
-        if ($tags) {
-            foreach (explode(',', $tags) as $tag) {
+        if ($attributes['tags'] ?? false) {
+            foreach (explode(',', $attributes['tags']) as $tag) {
                 $job->tag($tag);
             }
         }

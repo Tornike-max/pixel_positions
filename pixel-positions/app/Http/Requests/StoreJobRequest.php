@@ -28,7 +28,8 @@ class StoreJobRequest extends FormRequest
             'location' => 'required|string',
             'schedule' => ['required', Rule::in(['Part Time', 'Full Time'])],
             'url' => 'required|url',
-            'featured' => 'required'
+            'featured' => 'required',
+            'tags' => 'nullable'
         ];
     }
 }

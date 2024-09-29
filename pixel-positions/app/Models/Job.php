@@ -21,7 +21,7 @@ class Job extends Model
 
     public function tag(string $name)
     {
-        $tag = Job::query()->firstOrCreate(['name' => $name]);
+        $tag = Tag::query()->firstOrCreate(['name' => $name]);
         return $tag;
     }
 

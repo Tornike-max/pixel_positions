@@ -13,9 +13,7 @@ class SearchController extends Controller
             'query' => 'string|min:2'
         ]);
 
-
-        $jobs = Job::query()->where('title', 'like', '%' . $validSearch['query'] . '%')->get();
-
+        $jobs = Job::query()->with('tags')->where('title', 'like', '%' . $validSearch['query'] . '%')->get();
         return view('jobs.search-jobs', [
             'jobs' => $jobs
         ]);

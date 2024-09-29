@@ -13,10 +13,10 @@ Route::get('/tag/{tag:name}', TagController::class);
 
 
 Route::get('/jobs/create', [JobController::class, 'create'])->middleware('auth');
-Route::get('/jobs/{job}', [JobController::class, 'show'])->middleware('auth');
-
 Route::post('/jobs/store', [JobController::class, 'store'])->middleware('auth');
-
+Route::get('/jobs/{job}', [JobController::class, 'show'])->middleware('auth');
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->middleware('auth');
+Route::put('/jobs/{job}', [JobController::class, 'update'])->middleware('auth');
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'create']);

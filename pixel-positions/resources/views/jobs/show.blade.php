@@ -1,9 +1,11 @@
 <x-layout>
     <div class="w-full flex justify-center items-center flex-col">
-        <div class="w-full flex justify-start items-center">
+        <div class="w-full flex justify-start items-center gap-2">
             <a href="/"
                 class="py-2 px-3 rounded-lg border-[2px] border-white/80 hover:border-white/90 text-white/80 hover:text-white/90 duration-200 transition-all">Go
                 Back</a>
+            <a href="/jobs/{{$job->id}}/edit"
+                class="py-2 px-3 rounded-lg border-[2px] border-white/80 hover:border-white/90 text-white/80 hover:text-white/90 duration-200 transition-all">Edit</a>
         </div>
 
         <div class="w-full flex justify-center items-center flex-col gap-2 my-8">

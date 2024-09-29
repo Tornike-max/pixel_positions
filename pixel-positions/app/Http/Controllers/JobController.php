@@ -9,6 +9,7 @@ use App\Models\Employer;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 class JobController extends Controller
 {
@@ -74,7 +75,10 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        //
+        $job->load(['employer', 'tags']);
+        return view('jobs.edit', [
+            'job' => $job
+        ]);
     }
 
     /**
@@ -82,7 +86,22 @@ class JobController extends Controller
      */
     public function update(UpdateJobRequest $request, Job $job)
     {
-        //
+        $validatedData = $request->validated();
+
+        if ($validatedData['tags'] ?? false) {
+            $job->addTags(explode(',', $validatedData['tags']));
+        }
+
+        if (isset($validatedData['featured'])) {
+            $validatedData['featured'] = $validatedData['featured'] === 'yes' ? true : false;
+        }
+
+        $res = $job->update($validatedData);
+        if ($res) {
+            return redirect()->to('/')->with(['message' => 'Job updated successfully']);
+        } else {
+            throw ValidationException::withMessages(['message' => 'something went wrong']);
+        }
     }
 
     /**

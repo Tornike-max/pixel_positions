@@ -14,7 +14,7 @@
 </head>
 
 <body class="bg-black text-white font-hanken-grotesk">
-    <div class="px-10 ">
+    <div class="px-10 pb-8">
         <nav class="flex justify-between items-center border-b-[2px] border-white/10 bg-black py-4">
             <div>
                 <a href="/">
@@ -23,7 +23,7 @@
             </div>
 
             <div class="space-x-6 font-bold">
-                <a href="#">Jobs</a>
+                <a href="/">Jobs</a>
                 <a href="#">Careers</a>
                 <a href="#">Salaries</a>
                 <a href="#">Companies</a>

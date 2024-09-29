@@ -19,10 +19,13 @@ class Job extends Model
         'employer_id'
     ];
 
-    public function tag(string $name)
+    public function addTags(array $tags)
     {
-        $tag = Tag::query()->firstOrCreate(['name' => $name]);
-        return $tag;
+        foreach ($tags as $tag) {
+            $newTag = Tag::firstOrCreate(['name' => $tag]);
+
+            $this->tags()->attach($newTag);
+        }
     }
 
     public function employer()

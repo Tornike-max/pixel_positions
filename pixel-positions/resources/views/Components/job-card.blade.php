@@ -6,9 +6,11 @@
         <div>
             <h1 class="text-start group-hover:text-blue-500 duration-200 transition-all ease-in-out">Laracasts</h1>
         </div>
-        <div class="py-8 font-bold group-hover:text-blue-500 duration-200 transition-all ease-in-out">
-            <h3>{{$job->title}}</h3>
-            <p>{{$job->schedule}} - From {{$job->salary}}</p>
+        <div class="py-8 font-bold group-hover:text-blue-500 duration-200 transition-all ease-in-out gap-2">
+            <a href="/jobs/{{$job->id}}">
+                <h3>{{$job->title}}</h3>
+                <p>{{$job->schedule}} - From {{$job->salary}}</p>
+            </a>
         </div>
         <div class="flex justify-between items-center mt-auto">
             <div>

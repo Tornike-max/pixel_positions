@@ -10,7 +10,7 @@
             </form>
         </section>
         <section>
-            <x-job-heading>Top Jobs</x-job-heading>
+            <x-job-heading>Featured Jobs</x-job-heading>
             <div class="w-full grid grid-cols-3 gap-3">
                 @foreach ($featuredJobs as $job)
                 <x-job-card :$job />

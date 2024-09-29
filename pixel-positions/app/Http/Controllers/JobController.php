@@ -17,11 +17,13 @@ class JobController extends Controller
      */
     public function index()
     {
-        $featuredJobs = Job::all()->groupBy('featured');
+        $featuredJobs = Job::with('tags')->latest()->get()->groupBy('featured');
+
+        // dd($featuredJobs)
 
         return view('jobs.index', [
-            'featuredJobs' => $featuredJobs[0],
-            'jobs' => $featuredJobs[1],
+            'featuredJobs' => $featuredJobs[1],
+            'jobs' => $featuredJobs[0],
             'tags' => []
         ]);
     }
@@ -51,9 +53,7 @@ class JobController extends Controller
         $job = Auth::user()->employer->jobs()->create(Arr::except($attributes, 'tags'));
 
         if ($attributes['tags'] ?? false) {
-            foreach (explode(',', $attributes['tags']) as $tag) {
-                $job->tag($tag);
-            }
+            $job->addTags(explode(',', $attributes['tags']));
         }
 
         return redirect()->to('/')->with(['message' => 'Job created successfully']);
@@ -64,7 +64,9 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-        //
+        return view('jobs.show', [
+            'job' => $job
+        ]);
     }
 
     /**

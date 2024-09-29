@@ -34,14 +34,15 @@ class RegisterController extends Controller
 
         $employerAttributes = $request->validate([
             'employer' => 'required',
-            'logo' => ['required', File::types(['png', 'jpg', 'webp'])]
+            'logo' => ['required', 'image', File::types(['png', 'jpg', 'webp'])]
         ]);
 
 
         $logoPath = '';
 
         if ($request->hasFile('logo')) {
-            $logoPath = $request->logo->store('logos');
+            $logoPath = time() . '.' . $request->logo->extension();
+            $request->logo->move('public', $logoPath);
         }
 
         $user = User::create($userAttributes);

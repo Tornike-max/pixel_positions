@@ -16,6 +16,9 @@
                 <x-job-card :$job />
                 @endforeach
             </div>
+            <div>
+                {{$featuredJobs->onEachSide(5)->links()}}
+            </div>
         </section>
 
         <section>
@@ -33,6 +36,9 @@
                 @foreach ($jobs as $job)
                 <x-job-card-wide :$job />
                 @endforeach
+            </div>
+            <div>
+                {{$jobs->links()}}
             </div>
         </section>
     </div>

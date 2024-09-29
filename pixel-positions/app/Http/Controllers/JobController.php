@@ -17,13 +17,13 @@ class JobController extends Controller
      */
     public function index()
     {
-        $featuredJobs = Job::with('tags')->latest()->get()->groupBy('featured');
+        $featuredJobs = Job::with('tags')->where('featured', '=', 1)->latest()->simplePaginate(3);
+        $jobs = Job::with('tags')->where('featured', '=', 0)->latest()->simplePaginate(6);
 
-        // dd($featuredJobs)
 
         return view('jobs.index', [
-            'featuredJobs' => $featuredJobs[1],
-            'jobs' => $featuredJobs[0],
+            'featuredJobs' => $featuredJobs,
+            'jobs' => $jobs,
             'tags' => []
         ]);
     }

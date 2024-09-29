@@ -18,7 +18,7 @@
                 <x-tag size='sm' :tag="$tag->name" />
                 @endforeach
             </div>
-            <x-employer-logo :width='42' />
+            <x-employer-logo :width='42' :employer="$job->employer" />
         </div>
     </div>
 </div>

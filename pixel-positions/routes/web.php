@@ -7,7 +7,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [JobController::class, 'index']);
+Route::get('/', [JobController::class, 'index'])->middleware('auth');
 Route::get('/search', SearchController::class);
 Route::get('/tag/{tag:name}', TagController::class);
 

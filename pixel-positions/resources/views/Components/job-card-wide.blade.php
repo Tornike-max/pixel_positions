@@ -4,7 +4,7 @@
 <div
     class="p-4 bg-white/5 hover:bg-white/10 duration-200 transition-all cursor-pointer rounded-xl flex gap-6 border-[1px] border-white/10 hover:shadow-lg hover:border-blue-800 ease-in-out">
     <div>
-        <x-employer-logo :width='90' />
+        <x-employer-logo :width='90' :employer="$job->employer" />
     </div>
 
     <div class="flex-1 flex flex-col">
